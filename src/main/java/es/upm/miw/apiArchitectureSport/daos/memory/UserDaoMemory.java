@@ -1,6 +1,5 @@
 package es.upm.miw.apiArchitectureSport.daos.memory;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +11,7 @@ import es.upm.miw.apiArchitectureSport.daos.UserDao;
 public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 
 	public UserDaoMemory() {
-		this.setMap(new HashMap<Integer,User>());
+		this.setMap(new HashMap<Integer, User>());
 	}
 
 	@Override
@@ -25,19 +24,7 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 		entity.setId(id);
 	}
 
-	@Override
-	public List<Integer> findValueBySportId(int sportId) {
-		List<User> users = this.findAll();
-		List<Integer> usersNick = new ArrayList<>();
-		for (User user : users) {
-			if (user.getSport().get(sportId).getId() == sportId) {
-				usersNick.add(user.getId());
-			}
-		}
-		return usersNick;
-	}
-	
-	
+
 	public List<String> findByUser(String themeId) {
 		List<User> users = this.findAll();
 		List<String> usersName = new ArrayList<>();
@@ -48,66 +35,56 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 		}
 		return usersName;
 	}
-	
-	
+
 	public List<User> findUserBySport(String sportName) {
 		List<User> users = this.findAll();
 		List<User> usersName = new ArrayList<>();
 		for (User user : users) {
-			for(int i=0; i<user.getSport().size();i++){
-				if(user.getSport().get(i).getName().equals(sportName)){
+			for (int i = 0; i < user.getSport().size(); i++) {
+				if (user.getSport().get(i).getName().equals(sportName)) {
 					usersName.add(user);
 				}
-				
+
 			}
-			
+
 		}
 		return usersName;
 	}
-	
-	
-	
-	
 
-	
 	public List<Sport> findSport(Integer idUser) {
-		System.out.println("Id Usuarioa buscar"+idUser);
+		System.out.println("Id Usuario a buscar" + idUser);
 		List<User> users = this.findAll();
 		List<Sport> sportsList = new ArrayList<>();
-	
+
 		for (User user : users) {
 			if (user.getId() == idUser) {
-				for(int i=0;  i<user.getSport().size(); i++){
+				for (int i = 0; i < user.getSport().size(); i++) {
 					sportsList.add(user.getSport().get(i));
-					
+
 				}
 
 			}
 		}
-		System.out.println("Lista de los usuarios"+users);
-	
-		System.out.println("Lista de los Deportes"+sportsList);
+		System.out.println("Lista de los usuarios" + users);
+
+		System.out.println("Lista de los Deportes" + sportsList);
 		return sportsList;
 	}
-	
-	
-	
+
 	public List<Integer> findOneUser(String nickUser) {
 		List<User> users = this.findAll();
 		List<Integer> userId = new ArrayList<>();
 		for (User user : users) {
 			if (user.getNick().equalsIgnoreCase(nickUser)) {
-				  userId.add(user.getId());
+				userId.add(user.getId());
 			}
-			
+
 		}
-		
-		
-		System.out.println(nickUser+"nickk");
-		System.out.println(userId+"idNick");
+
+		System.out.println(nickUser + "nickk");
+		System.out.println(userId + "idNick");
 
 		return userId;
 	}
-	
 
 }

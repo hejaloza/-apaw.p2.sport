@@ -1,13 +1,10 @@
 package es.upm.miw.apiArchitectureSport.wrappers;
 
-public class ThemeWrapper {
+public class SportWrapper {
 	private int id;
 	private String name;
 
-	public ThemeWrapper() {
-	}
-
-	public ThemeWrapper(int id, String name) {
+	public SportWrapper(int id, String name) {
 		this.setId(id);
 		this.setName(name);
 	}
@@ -30,7 +27,7 @@ public class ThemeWrapper {
 
 	@Override
 	public String toString() {
-		return "{\"id\":" + id + ",\"name\":\"" + name + "\"}";
+		return "{\"Id\":" + id + ",\"Name\":\"" + name + "\"}";
 	}
 
 }

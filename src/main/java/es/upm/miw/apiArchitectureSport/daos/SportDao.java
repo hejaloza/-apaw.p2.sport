@@ -5,7 +5,7 @@ import java.util.List;
 import es.upm.miw.apiArchitectureSport.entities.Sport;
 
 public interface SportDao extends GenericDao<Sport, Integer> {
-	List<String> findBySport(String name);
-	List<Integer> findOneSport(String name);
+	List<String> findSportBySportName(String sportName);
+	List<Integer> findOneSport(String sportName);
 	
 }

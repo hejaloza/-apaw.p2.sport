@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import es.upm.miw.apiArchitectureSport.entities.Sport;
-import es.upm.miw.apiArchitectureSport.entities.User;
 import es.upm.miw.apiArchitectureSport.daos.SportDao;
-import es.upm.miw.apiArchitectureSport.daos.UserDao;
 
 public class SportDaoMemory extends GenericMemoryDao<Sport> implements SportDao {
 
@@ -25,37 +23,27 @@ public class SportDaoMemory extends GenericMemoryDao<Sport> implements SportDao 
 		entity.setId(id);
 
 	}
-	
-	
-	public List<String> findBySport(String name) {
+
+	public List<String> findSportBySportName(String sportName) {
 		List<Sport> sports = this.findAll();
 		List<String> sportsName = new ArrayList<>();
 		for (Sport sport : sports) {
-			if (sport.getName() == name) {
+			if (sport.getName() == sportName) {
 				sportsName.add(sport.getName());
 			}
 		}
 		return sportsName;
 	}
-	
-	
 
-
-	
-	
-	
-
-	public List<Integer> findOneSport(String name) {
+	public List<Integer> findOneSport(String sportName) {
 		List<Sport> sports = this.findAll();
 		List<Integer> sportsName = new ArrayList<>();
-		
 		for (Sport sport : sports) {
-			if (sport.getName().equalsIgnoreCase(name)) {
-				
+			if (sport.getName().equalsIgnoreCase(sportName)) {
 				sportsName.add(sport.getId());
 			}
 		}
 		return sportsName;
 	}
-	
+
 }
