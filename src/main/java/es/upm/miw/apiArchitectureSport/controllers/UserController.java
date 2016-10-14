@@ -34,24 +34,21 @@ public class UserController {
 	}
 
 	public UserListWrapper userList() {
-		List<User> votes = DaoFactory.getFactory().getUserDao().findAll();
+		List<User> users = DaoFactory.getFactory().getUserDao().findAll();
 		UserListWrapper voteListWrapper = new UserListWrapper();
-		// Sport sport=new Sport("null");
-		for (User vote : votes) {
+		for (User user : users) {
 			voteListWrapper
-					.addUserWrapper(new UserWrapper(vote.getId(), vote.getNick(), vote.getEmail(), vote.getSport()));
+					.addUserWrapper(new UserWrapper(user.getId(), user.getNick(), user.getEmail(), user.getSport()));
 		}
 		return voteListWrapper;
 	}
 
 	public UserListWrapper usersBySport(String sport) {
-		List<User> votes = DaoFactory.getFactory().getUserDao().findUserBySport(sport);
-		System.out.println(votes + "sss");
+		List<User> users = DaoFactory.getFactory().getUserDao().findUserBySport(sport);
 		UserListWrapper voteListWrapper = new UserListWrapper();
-
-		for (User vote : votes) {
+		for (User user : users) {
 			voteListWrapper
-					.addUserWrapper(new UserWrapper(vote.getId(), vote.getNick(), vote.getEmail(), vote.getSport()));
+					.addUserWrapper(new UserWrapper(user.getId(), user.getNick(), user.getEmail(), user.getSport()));
 		}
 		return voteListWrapper;
 	}

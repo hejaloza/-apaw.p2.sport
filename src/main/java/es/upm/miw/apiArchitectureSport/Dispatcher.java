@@ -1,6 +1,5 @@
 package es.upm.miw.apiArchitectureSport;
 
-import es.upm.miw.apiArchitectureSport.exceptions.ExistsSportException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
 import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.api.UserResource;
@@ -32,7 +31,7 @@ public class Dispatcher {
 				String urlParams = request.getPath().split("/")[1];
 				int indexParam = urlParams.indexOf("=");
 				String sportName = urlParams.substring(indexParam + 1);
-				response.setBody(userResource.usersBySport(sportName).toString2());
+				response.setBody(userResource.usersBySport(sportName).returnNick());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
@@ -49,7 +48,7 @@ public class Dispatcher {
 			try {
 				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
-			} catch (ExistsSportException e) {
+			} catch (Exception e) {
 				this.responseError(response, e);
 			}
 			break;

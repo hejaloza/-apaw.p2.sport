@@ -59,7 +59,7 @@ public class UserWrapper {
 		return "{\"Nick\":\"" + nick + ",\"Email\":" + email + ",\"Sport\":" + sport + "}";
 	}
 
-	public String toString2() {
+	public String returnNick() {
 		return "{\"Nick\":\"" + nick + "}";
 	}
 

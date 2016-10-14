@@ -24,7 +24,6 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 		entity.setId(id);
 	}
 
-
 	public List<String> findByUser(String nick) {
 		List<User> users = this.findAll();
 		List<String> usersName = new ArrayList<>();
@@ -52,7 +51,6 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 	}
 
 	public List<Sport> findSport(Integer idUser) {
-		System.out.println("Id Usuario a buscar" + idUser);
 		List<User> users = this.findAll();
 		List<Sport> sportsList = new ArrayList<>();
 
@@ -65,9 +63,6 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 
 			}
 		}
-		System.out.println("Lista de los usuarios" + users);
-
-		System.out.println("Lista de los Deportes" + sportsList);
 		return sportsList;
 	}
 
@@ -80,9 +75,6 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 			}
 
 		}
-
-		System.out.println(nickUser + "nickk");
-		System.out.println(userId + "idNick");
 
 		return userId;
 	}

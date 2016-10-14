@@ -5,12 +5,14 @@ import es.upm.miw.apiArchitectureSport.controllers.UserController;
 import es.upm.miw.apiArchitectureSport.daos.DaoFactory;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistsUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidSportException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidUserFieldException;
 import es.upm.miw.apiArchitectureSport.wrappers.UserWrapper;
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
 
 public class UserResource {
 
-	public void createUser(String nick, String email) throws ExistsUserException {
+	public void createUser(String nick, String email) throws ExistsUserException, InvalidUserFieldException {
+		this.validateField(nick, email);
 		this.validateUser(nick);
 		new UserController().createUser(nick, email);
 	}
@@ -40,6 +42,12 @@ public class UserResource {
 		List<String> listSport = DaoFactory.getFactory().getSportDao().findSportBySportName(sportName);
 		if (listSport.isEmpty()) {
 			throw new InvalidSportException(sportName);
+		}
+	}
+
+	private void validateField(String nick, String email) throws InvalidUserFieldException {
+		if (nick.isEmpty() || email.isEmpty()) {
+			throw new InvalidUserFieldException();
 		}
 	}
 

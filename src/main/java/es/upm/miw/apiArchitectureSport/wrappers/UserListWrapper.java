@@ -26,10 +26,10 @@ public class UserListWrapper {
 		return result.substring(0, result.length() - 1) + "]}";
 	}
 
-	public String toString2() {
+	public String returnNick() {
 		String result = "{\"userList\":[ ";
 		for (UserWrapper userWrapper : userList) {
-			result += userWrapper.toString2() + ",";
+			result += userWrapper.returnNick() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
 	}

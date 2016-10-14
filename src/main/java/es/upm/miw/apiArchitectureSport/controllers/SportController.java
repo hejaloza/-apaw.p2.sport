@@ -12,8 +12,8 @@ public class SportController {
 	public SportListWrapper sportList() {
 		List<Sport> sportList = DaoFactory.getFactory().getSportDao().findAll();
 		SportListWrapper sportListWrapper = new SportListWrapper();
-		for (Sport theme : sportList) {
-			sportListWrapper.addSportWrapper(new SportWrapper(theme.getId(), theme.getName()));
+		for (Sport sport : sportList) {
+			sportListWrapper.addSportWrapper(new SportWrapper(sport.getId(), sport.getName()));
 		}
 		return sportListWrapper;
 	}
