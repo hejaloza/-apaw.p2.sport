@@ -1,34 +1,32 @@
 package es.upm.miw.apiArchitectureSport.entities;
 
-
 public class Sport {
 
-    private int id;
+	private int id;
+	
+	private String name;
 
-    private String name;
-    
 
 
-    public Sport() {
-    }
+	public Sport(String name) {
+		this.name = name;
+	}
 
-    public Sport(String name) {
-        this.name = name;
-        
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 	public String getName() {
-        return name;
-    }
-
+		return name;
+	}
+	
+	public void setNombre(String name) {
+		this.name = name;
+	}
 	
 
 	@Override

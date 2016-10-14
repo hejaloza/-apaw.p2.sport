@@ -4,6 +4,7 @@ import es.upm.miw.apiArchitectureSport.controllers.SportController;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
 import es.upm.miw.apiArchitectureSport.exceptions.NotFoundThemeIdException;
 import es.upm.miw.apiArchitectureSport.wrappers.OverageWrapper;
+import es.upm.miw.apiArchitectureSport.wrappers.ThemeWrapper;
 import es.upm.miw.apiArchitectureSport.wrappers.ThemeListWrapper;
 
 public class SportResource {
@@ -16,10 +17,14 @@ public class SportResource {
 	// POST **/themes   body="themeName"
 	public void createTheme(String themeName) throws InvalidThemeFieldException {
 		this.validateField(themeName);
+		this.validateSport(themeName);
 		new SportController().createTheme(themeName);
 	}
+	
+
 
 	private void validateField(String field) throws InvalidThemeFieldException {
+	//	ThemeWrapper themeWrapper=new SportController().themeList(field);
 		if (field == null || field.isEmpty()) {
 			throw new InvalidThemeFieldException(field);
 		}
@@ -34,5 +39,13 @@ public class SportResource {
 			return overageWrapper;
 		}
 	}
+	
+	public void validateSport(String themeName) throws InvalidThemeFieldException {
+		ThemeWrapper sportWrapper = new SportController().themeSport(themeName);
+		if (!sportWrapper.getName().isEmpty() ) {
+			throw new InvalidThemeFieldException(themeName);
+		} 
+	}
+
 
 }

@@ -16,17 +16,97 @@ public class ApiArchitectureMain {
 	public void help() {
 		IO.getIO().println("GET **/sports");
 		IO.getIO().println("POST **/sports   body=\"sportName\"");
-	//	IO.getIO().println("GET **/sports/{id}/overage");
-		IO.getIO().println("POST **/users   body=\"themeId:vote\"");
+		IO.getIO().println("PUT **/user/{nick}/sport");
+		IO.getIO().println("POST **/users   body=\"nick:email\"");
 		IO.getIO().println("GET **/users");
 	}
 
 	public void demo() {
 		request.setMethod(HttpMethod.POST);
-		request.setPath("sports");
-		request.setBody("Football");
+		request.setPath("users");
+		request.setBody("uno:uno@gmail.com");
 		this.request();
-		request.setBody("Tenis");
+		request.setMethod(HttpMethod.POST);
+		request.setPath("users");
+		request.setBody("dos:dos@gmail.com");
+		this.request();
+		request.setMethod(HttpMethod.POST);
+		request.setPath("users");
+		request.setBody("uno:tres@gmail.com");
+		this.request();
+		
+		request.setMethod(HttpMethod.GET);
+		request.setPath("users");
+		request.setBody("{}");
+		request.clearQueryParams();
+		this.request();
+
+		request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("tenis");
+		this.request();
+		request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("tenis");
+		this.request();
+		request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("ajedrez");
+		this.request();
+		/*request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("ajedrez");
+		this.request();*/
+	/*	request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("tenis");
+		this.request();*/
+	/*	request.setMethod(HttpMethod.GET);
+		request.setPath("sports");
+		request.clearQueryParams();
+		this.request();*/
+		
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/uno/sports");
+		request.setBody("tenis");
+		request.clearQueryParams();
+		this.request();
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/uno/sports");
+		request.setBody("noDeporte");
+		request.clearQueryParams();
+		this.request();
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/dos/sports");
+		request.setBody("tenis");
+		request.clearQueryParams();
+		this.request();
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/dos/sports");
+		request.setBody("ajedrez");
+		request.clearQueryParams();
+		this.request();
+	/*	request.setMethod(HttpMethod.PUT);
+		request.setPath("users/dos/sports");
+		request.setBody("ajedrez");
+		request.clearQueryParams();
+		this.request();
+		
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/tres/sports");
+		request.setBody("tenis");
+		request.clearQueryParams();
+		this.request();
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/tres/sports");
+		request.setBody("ajedrez");
+		request.clearQueryParams();
+		this.request();
+
+	
+		request.setMethod(HttpMethod.GET);
+		request.setPath("users");
+		request.clearQueryParams();
 		this.request();
 	/*	request.setPath("votes");
 		request.setBody("1:4");
@@ -37,10 +117,9 @@ public class ApiArchitectureMain {
 		this.request();
 		request.setBody("2:6");
 		this.request();*/
-		request.setMethod(HttpMethod.GET);
-		request.setPath("sports");
-		request.clearQueryParams();
-		this.request();
+
+		
+
 		/*request.setPath("themes");
 		this.request();
 		request.setPath("themes/1/overage");
@@ -58,6 +137,23 @@ public class ApiArchitectureMain {
 		request.setPath("votes");
 		request.setBody("99:4");
 		this.request();*/
+		
+		request.setMethod(HttpMethod.GET);
+		request.setPath("users");
+		request.setBody("{}");
+		request.clearQueryParams();
+		this.request();
+		
+		request.setMethod(HttpMethod.GET);
+		request.setPath("users/search?sport=tenis");
+		request.setBody("{}");
+		request.clearQueryParams();
+		this.request();
+		
+		request.setMethod(HttpMethod.POST);
+		request.setPath("Nopath");
+		request.setBody("{}");
+		this.request();
 	}
 
 	public void httpMethod() {

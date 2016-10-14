@@ -13,8 +13,8 @@ public abstract class DaoFactory {
         return factory;
     }
 
-    public abstract SportDao getThemeDao();
+    public abstract SportDao getSportDao();
 
-    public abstract UserDao getVoteDao();
+    public abstract UserDao getUserDao();
 
 }

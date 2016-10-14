@@ -11,7 +11,7 @@ import es.upm.miw.apiArchitectureSport.wrappers.ThemeWrapper;
 public class SportController {
 
 	public ThemeListWrapper themeList() {
-		List<Sport> themeList = DaoFactory.getFactory().getThemeDao().findAll();
+		List<Sport> themeList = DaoFactory.getFactory().getSportDao().findAll();
 		ThemeListWrapper themeListWrapper = new ThemeListWrapper();
 		for (Sport theme : themeList) {
 			themeListWrapper.addThemeWrapper(new ThemeWrapper(theme.getId(), theme.getName()));
@@ -20,19 +20,36 @@ public class SportController {
 	}
 
 	public void createTheme(String themeName) {
-		DaoFactory.getFactory().getThemeDao().create(new Sport(themeName));
+		
+		DaoFactory.getFactory().getSportDao().create(new Sport(themeName));
 	}
 
-	public OverageWrapper themeOverage(int themeId) {
-		if (DaoFactory.getFactory().getThemeDao().read(themeId) == null) {
+	public OverageWrapper themeOverage(int sportId) {
+		if (DaoFactory.getFactory().getSportDao().read(sportId) == null) {
 			return null;
 		}
-		List<Integer> voteValues = DaoFactory.getFactory().getVoteDao().findValueByThemeId(themeId);
+		List<Integer> voteValues = DaoFactory.getFactory().getUserDao().findValueBySportId(sportId);
 		double total = 0;
 		for (Integer value : voteValues) {
 			total += value;
 		}
 		return new OverageWrapper(total / voteValues.size());
+	
+	
 	}
+	
+	
+	public ThemeWrapper themeSport(String themeName) {
+		
+		List<String> themeWrapper = DaoFactory.getFactory().getSportDao().findBySport(themeName);
+		  String name="";
+		for (String value : themeWrapper) {
+			 name= value;
+		}
+	    
+		return new ThemeWrapper(1,name);
+	
+	}
+	
 
 }

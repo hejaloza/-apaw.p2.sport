@@ -1,19 +1,24 @@
 package es.upm.miw.apiArchitectureSport.entities;
 
+import java.util.List;
+
 public class User {
 	
 	private int id;
+	
     private String nick;
+    
     private String email;
-
-    private Sport sport;
+    
+    private List<Sport> sport;
 
     public User() {
     }
 
-    public User(String nick, Sport sport) {
+    public User(String nick, String email,List<Sport> sport) {
         this.nick = nick;
-        this.sport = sport;
+        this.email = email;
+        this.sport=sport;
     }
     
     
@@ -43,13 +48,18 @@ public class User {
 		this.email = email;
 	}
 
-    public Sport getSport() {
+    public List<Sport> getSport() {
         return sport;
     }
+    
+    public void setSport(List<Sport> sport) {
+        this.sport=sport;
+    }
+    
 
 	@Override
 	public String toString() {
-		return "User [nick=" + nick + ", email=" + email + ", sport=" + sport + "]";
+		return "User [id=" + id + ",nick=" + nick + ", email=" + email +  "]";
 	}
 
 }

@@ -25,5 +25,12 @@ public class VoteListWrapper {
 		}
 		return result.substring(0, result.length() - 1) + "]}";
 	}
+	public String toString2() {
+		String result = "{\"voteList\":[ ";
+		for (VoteWrapper voteWrapper : voteList) {
+			result += voteWrapper.toString2() + ",";
+		}
+		return result.substring(0, result.length() - 1) + "]}";
+	}
 
 }

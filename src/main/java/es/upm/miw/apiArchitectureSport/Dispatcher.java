@@ -3,6 +3,10 @@ package es.upm.miw.apiArchitectureSport;
 
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidVoteException;
+
+import java.util.Map;
+
 import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.api.UserResource;
 import es.upm.miw.web.http.HttpRequest;
@@ -21,19 +25,25 @@ public class Dispatcher {
 
 	public void doGet(HttpRequest request, HttpResponse response) {
 		// **/sports
+
 		if ("sports".equals(request.getPath())) {
 			response.setBody(sportResource.themeList().toString());
 			// **/themes/{id}/overage
-		} else if ("themes".equals(request.paths()[0]) && "overage".equals(request.paths()[2])) {
+		} else if ("users".equals(request.getPath())) {
+			response.setBody(userResource.voteList().toString());
+			
+		}else if (("users".equals(request.getPath().split("/")[0]))&& (request.getPath().split("/")[1]).startsWith("search")) {
 			try {
-				response.setBody(sportResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
+				
+				String urlParametros=request.getPath().split("/")[1];
+				int inicio = urlParametros.indexOf("=");
+				String sport=urlParametros.substring(inicio + 1);
+				response.setBody(userResource.usersBySport(sport).toString2());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
 			// **/votes
-		} else if ("users".equals(request.getPath())) {
-			response.setBody(userResource.voteList().toString());
-		} else {
+		}  else {
 			responseError(response, new InvalidRequestException(request.getPath()));
 		}
 	}
@@ -55,7 +65,7 @@ public class Dispatcher {
 			String themeId = request.getBody().split(":")[0];
 			String vote = request.getBody().split(":")[1];
 			try {
-			//	voteResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
+				userResource.createVote(themeId, vote);
 				response.setStatus(HttpStatus.CREATED);
 			} catch (Exception e) {
 				responseError(response, e);
@@ -68,10 +78,24 @@ public class Dispatcher {
 	}
 
 	public void doPut(HttpRequest request, HttpResponse response) {
-		switch (request.getPath()) {
-		default:
+		//String nickUser = request.getPath().split("/")[1];
+	
+		if ("users".equals(request.paths()[0]) && "sports".equals(request.paths()[2])) {
+		
+			try {
+			//	String nickUser = request.getPath().split("/")[1];
+				String nickUser = request.paths()[1];
+				String SportUser = request.getBody();
+				System.out.println("Path"+nickUser);
+				//String nickUser="dos";
+			//	String SportUser="ajedrez";
+				userResource.updateUser(nickUser,SportUser);
+				response.setStatus(HttpStatus.CREATED);
+			} catch (InvalidVoteException e) {
+				this.responseError(response, e);
+			}
+		}else{
 			responseError(response, new InvalidRequestException(request.getPath()));
-			break;
 		}
 	}
 
