@@ -25,11 +25,11 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 	}
 
 
-	public List<String> findByUser(String themeId) {
+	public List<String> findByUser(String nick) {
 		List<User> users = this.findAll();
 		List<String> usersName = new ArrayList<>();
 		for (User user : users) {
-			if (user.getNick().equalsIgnoreCase(themeId)) {
+			if (user.getNick().equalsIgnoreCase(nick)) {
 				usersName.add(user.getNick());
 			}
 		}

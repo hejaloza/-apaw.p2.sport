@@ -1,8 +1,7 @@
 package es.upm.miw.apiArchitectureSport;
 
+import es.upm.miw.apiArchitectureSport.exceptions.ExistsSportException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidVoteException;
 import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.api.UserResource;
 import es.upm.miw.web.http.HttpRequest;
@@ -50,7 +49,7 @@ public class Dispatcher {
 			try {
 				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidThemeFieldException e) {
+			} catch (ExistsSportException e) {
 				this.responseError(response, e);
 			}
 			break;
@@ -79,7 +78,7 @@ public class Dispatcher {
 				String sportName = request.getBody();
 				userResource.updateUser(nick, sportName);
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidVoteException e) {
+			} catch (Exception e) {
 				this.responseError(response, e);
 			}
 		} else {

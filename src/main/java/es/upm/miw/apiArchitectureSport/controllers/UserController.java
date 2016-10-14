@@ -56,9 +56,9 @@ public class UserController {
 		return voteListWrapper;
 	}
 
-	public UserWrapper voteUser(String themeId) {
+	public UserWrapper findUser(String nick) {
 
-		List<String> voteWrapper = DaoFactory.getFactory().getUserDao().findByUser(themeId);
+		List<String> voteWrapper = DaoFactory.getFactory().getUserDao().findByUser(nick);
 		String name = "";
 		int id=0;
 		List<Sport> listSport = new ArrayList<Sport>();
