@@ -83,12 +83,6 @@ public class ApiArchitectureMain {
 		this.request();
 
 		request.setMethod(HttpMethod.GET);
-		request.setPath("users");
-		request.setBody("{}");
-		request.clearQueryParams();
-		this.request();
-
-		request.setMethod(HttpMethod.GET);
 		request.setPath("users/search?sport=tenis");
 		request.setBody("{}");
 		request.clearQueryParams();

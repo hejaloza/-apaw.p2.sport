@@ -14,53 +14,51 @@ public class UserController {
 	public void createUser(String nick, String email) {
 		List<Sport> listSport = new ArrayList<Sport>();
 		DaoFactory.getFactory().getUserDao().create(new User(nick, email, listSport));
-
 	}
 
-	public void updateVote(String nickUser, String SportUser) {
+	public void updateUser(String nickUser, String SportUser) {
 		List<Integer> ListIdSport = DaoFactory.getFactory().getSportDao().findOneSport(SportUser);
 		Integer idSport = ListIdSport.get(0);
-		Sport sport1 = DaoFactory.getFactory().getSportDao().read(idSport);
-		
+		Sport sport = DaoFactory.getFactory().getSportDao().read(idSport);
+
 		List<Integer> idUser = DaoFactory.getFactory().getUserDao().findOneUser(nickUser);
 		Integer id = idUser.get(0);
-		User user1 = DaoFactory.getFactory().getUserDao().read(id);
-		
+		User user = DaoFactory.getFactory().getUserDao().read(id);
+
 		List<Sport> ListSports = DaoFactory.getFactory().getUserDao().findSport(id);
-		ListSports.add(sport1);
-		user1.setSport(ListSports);
-		DaoFactory.getFactory().getUserDao().update(user1);
+		ListSports.add(sport);
+		user.setSport(ListSports);
+		DaoFactory.getFactory().getUserDao().update(user);
 
 	}
 
 	public UserListWrapper userList() {
 		List<User> users = DaoFactory.getFactory().getUserDao().findAll();
-		UserListWrapper voteListWrapper = new UserListWrapper();
+		UserListWrapper userListWrapper = new UserListWrapper();
 		for (User user : users) {
-			voteListWrapper
+			userListWrapper
 					.addUserWrapper(new UserWrapper(user.getId(), user.getNick(), user.getEmail(), user.getSport()));
 		}
-		return voteListWrapper;
+		return userListWrapper;
 	}
 
 	public UserListWrapper usersBySport(String sport) {
 		List<User> users = DaoFactory.getFactory().getUserDao().findUserBySport(sport);
-		UserListWrapper voteListWrapper = new UserListWrapper();
+		UserListWrapper userListWrapper = new UserListWrapper();
 		for (User user : users) {
-			voteListWrapper
+			userListWrapper
 					.addUserWrapper(new UserWrapper(user.getId(), user.getNick(), user.getEmail(), user.getSport()));
 		}
-		return voteListWrapper;
+		return userListWrapper;
 	}
 
 	public UserWrapper findUser(String nick) {
 
-		List<String> voteWrapper = DaoFactory.getFactory().getUserDao().findByUser(nick);
+		List<String> userWrapper = DaoFactory.getFactory().getUserDao().findByUser(nick);
 		String name = "";
-		int id=0;
+		int id = 0;
 		List<Sport> listSport = new ArrayList<Sport>();
-
-		for (String value : voteWrapper) {
+		for (String value : userWrapper) {
 			name = value;
 			id++;
 		}

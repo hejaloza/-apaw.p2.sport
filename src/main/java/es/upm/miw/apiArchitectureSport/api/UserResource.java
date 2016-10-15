@@ -20,7 +20,7 @@ public class UserResource {
 	// Put Sport in User **/ body="sportName"
 	public void updateUser(String nick, String SportName) throws InvalidSportException {
 		this.validateSport(SportName);
-		new UserController().updateVote(nick, SportName);
+		new UserController().updateUser(nick, SportName);
 	}
 
 	public UserListWrapper userList() {

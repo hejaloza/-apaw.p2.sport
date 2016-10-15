@@ -26,7 +26,7 @@ public class SportController {
 	public SportWrapper findSport(String sportName) {
 		List<String> sportWrapper = DaoFactory.getFactory().getSportDao().findSportBySportName(sportName);
 		String name = "";
-		int id=0;
+		int id = 0;
 		for (String value : sportWrapper) {
 			name = value;
 			id++;

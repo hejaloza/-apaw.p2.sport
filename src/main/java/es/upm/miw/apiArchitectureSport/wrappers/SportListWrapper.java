@@ -10,7 +10,7 @@ public class SportListWrapper {
 		sportList = new ArrayList<>();
 	}
 
-	public List<SportWrapper> getThemeList() {
+	public List<SportWrapper> getSportList() {
 		return sportList;
 	}
 

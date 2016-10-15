@@ -10,9 +10,6 @@ public class UserWrapper {
 	private String email;
 	private List<Sport> sport;
 
-	public UserWrapper() {
-	}
-
 	public UserWrapper(int id, String nick, String email, List<Sport> sport) {
 		this.setId(id);
 		this.setNick(nick);
@@ -45,9 +42,7 @@ public class UserWrapper {
 	}
 
 	public List<Sport> getSport() {
-
 		return sport;
-
 	}
 
 	public void setSport(List<Sport> sport) {

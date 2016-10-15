@@ -3,10 +3,8 @@ package es.upm.miw.apiArchitectureSport.entities;
 public class Sport {
 
 	private int id;
-	
+
 	private String name;
-
-
 
 	public Sport(String name) {
 		this.name = name;
@@ -23,11 +21,10 @@ public class Sport {
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setNombre(String name) {
 		this.name = name;
 	}
-	
 
 	@Override
 	public String toString() {
